@@ -12,8 +12,9 @@ import {
   stateSelectors as mealsState,
 } from "@/store/modules/meals/selectors";
 import { actionSelectors as mealsActions } from "@/store/modules/meals/selectors";
+import {defineComponent} from "vue";
 
-export default {
+export default defineComponent({
   name: 'Home',
   components: {"meals-component": Meals},
   created() {
@@ -31,5 +32,5 @@ export default {
       fetchRandomMeals: mealsActions.FETCH_RANDOM_MEALS,
     }),
   },
-};
+});
 </script>

@@ -7,4 +7,5 @@ export default createStore({
     modules: {
         meals: mealsModule,
     },
+    devtools: true,
 })
