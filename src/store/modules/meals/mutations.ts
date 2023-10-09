@@ -14,24 +14,7 @@ export function setIngredient(state: MealsState, ingredient: string) {
 }
 
 export function addMeal(state: MealsState, meal: Meal) {
-    state.meals .push(meal);
+    state.meals.push(meal);
 }
-
-// export const mutations = {
-//     setInitialState: "setInitialState",
-//     mutate: "mutate",
-// };
-//
-// export default {
-//     setInitialState(state: State) {
-//         Object.assign(state, initialState());
-//
-//     },
-//     mutate(state: State, payload: any) {
-//         console.log(payload, "payload")
-//         state[payload.prop] = payload.with;
-//     },
-// };
-
 
 

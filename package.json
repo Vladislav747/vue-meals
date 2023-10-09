@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start:dev:server": "node ./json-server/index.js"
   },
   "dependencies": {
     "@types/axios": "^0.14.0",

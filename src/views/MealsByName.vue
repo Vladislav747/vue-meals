@@ -8,36 +8,54 @@
         v-model="keyword"
         class="rounded border-2 bg-white border-gray-200 focus:ring-orange-500 focus:border-orange-500 w-full"
         placeholder="Search for Meals"
-        @change="searchMeals"
+        @change="searchMealsChange"
     />
   </div>
-
   <Meals :meals="meals" />
 </template>
 
-<script setup>
-import { computed } from "@vue/reactivity";
-import { onMounted, ref } from "vue";
+<script lang="ts">
+import { ref, onMounted, defineComponent } from "vue";
 import { useRoute } from "vue-router";
-import store from "../store";
-import Meals from '../components/Meals.vue'
+import { useStore } from "vuex";
+import {computed} from "@vue/reactivity";
 
-const route = useRoute();
-const keyword = ref("");
-const meals = computed(() => store.state.searchedMeals);
+import Meals from '@/components/Meals.vue';
+import { actionSelectors as mealsActions } from "@/store/modules/meals/selectors";
 
-function searchMeals() {
-  if (keyword.value) {
-    store.dispatch("meals/searchMeals", keyword.value);
-  } else {
-    store.commit("meals/setSearchedMeals", []);
+
+export default defineComponent({
+  name: "MealsByName",
+  components: {
+    Meals
+  },
+  setup () {
+    const route = useRoute();
+    const store = useStore();
+    const keyword = ref<string>("");
+
+    onMounted(() => {
+      keyword.value = route.params.name as string;
+      if (keyword.value) {
+        searchMeals(keyword.value);
+      }
+    });
+
+    const searchMeals = (key: string) => {
+      store.dispatch(mealsActions.SEARCH_MEALS, key);
+    };
+
+    const searchMealsChange = () => {
+      searchMeals(keyword.value);
+    };
+
+    const meals = computed(() => store.state.meals.searchedMeals);
+
+    return {
+      keyword,
+      meals,
+      searchMealsChange
+    }
   }
-}
-
-onMounted(() => {
-  keyword.value = route.params.name
-  if (keyword.value) {
-    searchMeals()
-  }
-})
+});
 </script>

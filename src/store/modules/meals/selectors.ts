@@ -16,6 +16,7 @@ export const stateSelectors = {
 
 export const actionSelectors = {
     FETCH_RANDOM_MEALS: `${MODULE_NAME}/${actions.fetchRandomMeals}`,
+    SEARCH_MEALS: `${MODULE_NAME}/${actions.searchMeals}`,
 };
 
 

@@ -1,6 +1,6 @@
 import { Commit } from 'vuex';
 
-import axiosClient from '../../../axiosClient.ts';
+import axiosClient from '@/axiosClient.ts';
 import {MealData} from "./types";
 
 export const actions = {
@@ -12,10 +12,15 @@ export const actions = {
 
 export default {
     searchMeals({ commit }: {commit: Commit}, keyword: string) {
-        axiosClient.get(`search.php?s=${keyword}`)
-            .then(({ data }: MealData) => {
-                commit('setSearchedMeals', data.meals)
-            })
+        if(keyword){
+            axiosClient.get(`search.php?s=${keyword}`)
+                .then(({ data }: MealData) => {
+                    commit('setSearchedMeals', data.meals)
+                })
+        }else {
+            commit("setSearchedMeals", []);
+        }
+
     },
     searchMealsByLetter({ commit }: {commit: Commit}, letter: string) {
         axiosClient.get(`search.php?f=${letter}`)
