@@ -17,4 +17,8 @@ export function addMeal(state: MealsState, meal: Meal) {
     state.meals.push(meal);
 }
 
+export function setMeals(state: MealsState,  meals: Meal[]) {
+    state.meals = meals
+}
+
 

@@ -1,8 +1,6 @@
-const fs = require('fs');
 const jsonServer = require('json-server');
 const path = require('path');
 const http = require('http');
-
 
 
 const server = jsonServer.create();
@@ -20,30 +18,9 @@ server.use(async (req, res, next) => {
     next();
 });
 
-server.get('/token', (req, res) => {
-    const db = router.db; // lowdb instance
-    const token = db.get('token.key').value();
-    res.status(200).send(token);
-});
-
-server.get('/orgs/info', (req, res) => {
-    const db = router.db; // lowdb instance
-    const token = db.get('token.key').value();
-    res.status(200).send({
-        "ID": 68,
-        "Title": "Smu",
-        "ClientID": "smuadmin",
-        "ClientPassword": "smupassword",
-        "Entrypoint": "CITY"
-    });
-});
-
-
-
 server.use(router);
 
 // запуск сервера
-const PORT = 8443;
 const HTTP_PORT = 8000;
 
 const httpServer = http.createServer(server);

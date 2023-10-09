@@ -14,8 +14,8 @@ import store from "@/store";
 import Meals from '@/components/Meals.vue'
 
 const route = useRoute();
-const ingredient = computed(() => store.state.ingredient)
-const meals = computed(() => store.state.mealsByIngredient)
+const ingredient = computed(() => store.state.meals.ingredient)
+const meals = computed(() => store.state.meals.mealsByIngredient)
 
 onMounted(() => {
   store.dispatch('meals/searchMealsByIngredient', route.params.ingredient)

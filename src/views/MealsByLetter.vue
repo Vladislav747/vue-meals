@@ -25,7 +25,7 @@ import Meals from "@/components/Meals.vue";
 
 const route = useRoute();
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-const meals = computed(() => store.state.mealsByLetter);
+const meals = computed(() => store.state.meals.mealsByLetter);
 
 watch(route, () => {
   store.dispatch("meals/searchMealsByLetter", route.params.letter);
